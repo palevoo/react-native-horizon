@@ -14,6 +14,7 @@ export default class FoodItem extends Component {
       name,
       description,
       id,
+      index,
       title,
       imageUrl,
       price,
