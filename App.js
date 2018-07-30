@@ -5,27 +5,13 @@ import times from "lodash/times";
 
 import FoodItem from "./components/FoodItem";
 import SlideMe from "./components/SlideMe";
+import { data } from "./utils";
 
 export default class App extends React.Component {
   state = {
-    data: []
+    data: data
   };
 
-  async componentDidMount() {
-    let data = await times(15, i => ({
-      email: faker.internet.email(),
-      id: i,
-      image: faker.image.avatar(),
-      name: faker.internet.userName(),
-      city: faker.address.city(),
-      color: faker.commerce.color(),
-      price: faker.commerce.price()
-    }));
-
-    this.setState(() => ({
-      data: data
-    }));
-  }
   render() {
     return (
       <View style={styles.container}>
