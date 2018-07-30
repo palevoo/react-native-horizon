@@ -1,6 +1,6 @@
 {
-  "name": "kitchenete",
-  "version": "0.1.0",
+  "name": "react-native-horizon",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "jest-expo": "~27.0.0",
