@@ -1,23 +1,16 @@
 /* @flow */
 
-import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
-import propTypes from "prop-types";
+import React, { Component } from 'react'
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native'
+import propTypes from 'prop-types'
 
-import CustomButton from "Button";
-const { width } = Dimensions.get("window");
+import CustomButton from 'Button'
+
+const { width } = Dimensions.get('window')
 
 export default class ListItem extends Component {
-  render() {
-    const {
-      category,
-      color,
-      city,
-      description,
-      id,
-      imageUrl,
-      price
-    } = this.props;
+  render () {
+    const { color, city, id, imageUrl, price } = this.props
 
     return (
       <View style={styles.container}>
@@ -32,7 +25,7 @@ export default class ListItem extends Component {
           />
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -40,18 +33,16 @@ ListItem.propTypes = {
   category: propTypes.string,
   color: propTypes.string,
   city: propTypes.string,
-  description: propTypes.string,
   id: propTypes.number.isRequired,
   imageUrl: propTypes.string,
   price: propTypes.string
-};
+}
 
 ListItem.defaultProps = {
-  category: "Unknown",
-  color: "#fafafa",
-  city: "Unknown",
-  description: "Some tasty food description"
-};
+  category: 'Unknown',
+  color: '#fafafa',
+  city: 'Unknown'
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -59,13 +50,13 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     marginTop: 0,
     width: width,
-    flexDirection: "column",
-    alignItems: "center"
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   color: {
     width: width,
     zIndex: 1,
-    alignItems: "center"
+    alignItems: 'center'
   },
   foodImage: {
     width: width * 0.7,
@@ -77,10 +68,10 @@ const styles = StyleSheet.create({
   },
   text: {
     width: width,
-    flexDirection: "row",
-    backgroundColor: "#fafafa",
+    flexDirection: 'row',
+    backgroundColor: '#fafafa',
     padding: 40,
-    justifyContent: "space-between",
-    alignItems: "center"
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
-});
+})

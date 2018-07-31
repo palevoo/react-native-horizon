@@ -1,25 +1,26 @@
 /* @flow */
 
-import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
-import propTypes from "prop-types";
+import React, { Component } from 'react'
+import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native'
+import propTypes from 'prop-types'
 
-import ListItem from "./ListItem";
-import NavBar from "./NavBar";
-import Paginate from "./Paginate";
+import ListItem from './ListItem'
+import NavBar from './NavBar'
+import Paginate from './Paginate'
 
-const { width, height } = Dimensions.get("window");
-const DEFAULT_CAT = "Breakfast";
+const { width, height } = Dimensions.get('window')
+
+const DEFAULT_CAT = 'Breakfast'
 
 export default class Horizon extends Component {
   state = {
-    activeCategory: "",
+    activeCategory: '',
     data: this.props.data,
     filteredByCategory: []
-  };
+  }
 
   componentDidMount() {
-    this._handleCategory(DEFAULT_CAT);
+    this._handleCategory(DEFAULT_CAT)
   }
 
   render() {
@@ -41,24 +42,24 @@ export default class Horizon extends Component {
           renderItem={this._renderItem}
         />
       </View>
-    );
+    )
   }
 
   _filterByCategory = (data, category) => {
-    return data.filter(el => el.category === category);
-  };
+    return data.filter(el => el.category === category)
+  }
   _handleCategory = category => {
     this.setState(() => ({
       activeCategory: category,
       filteredByCategory: this._filterByCategory(this.state.data, category)
-    }));
-  };
+    }))
+  }
   _handleItem = item => {
-    console.log("PARENTO", item);
-  };
+    console.log('PARENTO', item)
+  }
   _keyExtractor = (item: Object, index: Number) => {
-    return item.id;
-  };
+    return item.id
+  }
 
   _renderItem({ item }) {
     return (
@@ -71,7 +72,7 @@ export default class Horizon extends Component {
         price={item.price}
         city={item.city}
       />
-    );
+    )
   }
 }
 
@@ -81,4 +82,4 @@ const styles = StyleSheet.create({
     width,
     height: height / 2
   }
-});
+})

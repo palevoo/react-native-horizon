@@ -3,10 +3,22 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0",
     "husky": "^1.0.0-rc.13",
     "jest-expo": "~27.0.0",
+    "prettier": "1.14.0",
+    "prettier-eslint": "^8.8.2",
     "react-native-scripts": "1.14.0",
-    "react-test-renderer": "16.3.1"
+    "react-test-renderer": "16.3.1",
+    "standard": "^11.0.1"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -18,7 +30,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test"
+      "pre-commit": "standard --fix --verbose | snazzy && yarn test"
     }
   },
   "jest": {
@@ -30,6 +42,7 @@
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "16.3.1",
-    "react-native": "~0.55.2"
+    "react-native": "~0.55.2",
+    "snazzy": "^7.1.1"
   }
 }
