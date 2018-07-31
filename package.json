@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^8.2.6",
     "eslint": "^5.2.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
@@ -32,6 +33,9 @@
     "hooks": {
       "pre-commit": "standard --fix --verbose | snazzy && yarn test"
     }
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "jest": {
     "preset": "jest-expo"

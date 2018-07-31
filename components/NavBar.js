@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   View,
   Text,
@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions
-} from "react-native";
-import { CATEGORIES } from "../utils";
+} from 'react-native'
+import { CATEGORIES } from '../utils'
 
 export default class NavBar extends Component {
   state = {
@@ -26,11 +26,11 @@ export default class NavBar extends Component {
           <Text style={styles.menuText}>{item}</Text>
         </View>
       </TouchableOpacity>
-    );
+    )
   };
 
-  render() {
-    const { handleCategory } = this.props;
+  render () {
+    const { handleCategory } = this.props
 
     return (
       <View style={styles.container}>
@@ -43,15 +43,15 @@ export default class NavBar extends Component {
           handleCategory={handleCategory}
         />
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     height: 40,
-    width: Dimensions.get("window").width,
-    backgroundColor: "#35D788"
+    width: Dimensions.get('window').width,
+    backgroundColor: '#35D788'
   },
   menuItem: {
     paddingLeft: 20,
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 24,
-    color: "#fafafa"
+    color: '#fafafa'
   }
-});
+})

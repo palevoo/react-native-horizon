@@ -1,11 +1,8 @@
 {
   "extends": ["standard"],
   "plugins": ["prettier"],
-  "globals": {
-    "document": false
-  },
+
   "rules": {
-    "space-before-function-paren": ["error", "always"],
-    "prettier/prettier": "error"
+    "space-before-function-paren": ["error", "always"]
   }
 }

@@ -1,8 +1,8 @@
 /* @flow */
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native'
-import propTypes from 'prop-types'
+import { View, StyleSheet, FlatList, Dimensions } from 'react-native'
+// import propTypes from 'prop-types'
 
 import ListItem from './ListItem'
 import NavBar from './NavBar'
@@ -19,11 +19,11 @@ export default class Horizon extends Component {
     filteredByCategory: []
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this._handleCategory(DEFAULT_CAT)
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <NavBar handleCategory={this._handleCategory} />
@@ -61,7 +61,7 @@ export default class Horizon extends Component {
     return item.id
   }
 
-  _renderItem({ item }) {
+  _renderItem ({ item }) {
     return (
       <ListItem
         index={item.id}

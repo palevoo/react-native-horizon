@@ -1,5 +1,4 @@
-/* eslint-env browser */
-
+/* global it, expect */
 import React from 'react'
 import App from './App'
 

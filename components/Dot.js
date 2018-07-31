@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class Dot extends Component {
-  render () {
+  render() {
     const { handleItem, id } = this.props
 
     return (

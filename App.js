@@ -1,18 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
-import propTypes from 'prop-types'
+// import propTypes from 'prop-types'
 
 import Horizon from './components/Horizon'
 import { data, APP_NAME } from './utils'
 
-const { width, height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 export default class App extends React.Component {
   state = {
     data: data
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>{APP_NAME}</Text>
