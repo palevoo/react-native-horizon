@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
-import faker from "faker";
-import times from "lodash/times";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+import propTypes from "prop-types";
 
-import FoodItem from "./components/FoodItem";
-import SlideMe from "./components/SlideMe";
-import { data } from "./utils";
+import Horizon from "./components/Horizon";
+import { data, APP_NAME } from "./utils";
+
+const { width, height } = Dimensions.get("window");
 
 export default class App extends React.Component {
   state = {
@@ -15,11 +15,11 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Kitchenete</Text>
+        <Text style={styles.header}>{APP_NAME}</Text>
         {this.state.data.length < 1 ? (
           <Text>LOADING...</Text>
         ) : (
-          <SlideMe data={this.state.data} />
+          <Horizon data={this.state.data} />
         )}
       </View>
     );
@@ -36,18 +36,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#35D788",
     padding: 20,
     paddingTop: 40,
-    width: Dimensions.get("window").width
-  },
-  profile: {
-    display: "flex",
-    flexDirection: "row",
-    padding: 10,
-    width: Dimensions.get("window").width,
-    borderBottomWidth: 1,
-    borderBottomColor: "#404040"
-  },
-  info: {
-    paddingLeft: 10,
-    flexDirection: "column"
+    width: width
   }
 });

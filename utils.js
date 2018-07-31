@@ -4,7 +4,7 @@ import times from "lodash/times";
 const CATEGORIES = ["Breakfast", "Lunch", "Vegan", "Bar", "Snacks"];
 
 const getRandomCategory = arr => {
-  let random = Math.floor(Math.random() * (arr.length - 0 + 1)) + 0;
+  let random = Math.floor(Math.random() * (arr.length + 1));
   return arr[random];
 };
 
@@ -19,4 +19,6 @@ const data = times(15, i => ({
   price: faker.commerce.price()
 }));
 
-export { data, CATEGORIES };
+const APP_NAME = "Horizon";
+
+export { data, CATEGORIES, APP_NAME };

@@ -2,26 +2,26 @@
 
 import React, { Component } from "react";
 import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
+import propTypes from "prop-types";
 
-import FoodItem from "./FoodItem";
+import ListItem from "./ListItem";
 import NavBar from "./NavBar";
 import Paginate from "./Paginate";
 
 const { width, height } = Dimensions.get("window");
 const DEFAULT_CAT = "Breakfast";
 
-export default class SlideMe extends Component {
+export default class Horizon extends Component {
   state = {
     activeCategory: "",
     data: this.props.data,
     filteredByCategory: []
   };
+
   componentDidMount() {
-    this.setState(() => ({
-      activeCategory: DEFAULT_CAT,
-      filteredByCategory: this._filterByCategory(this.state.data, DEFAULT_CAT)
-    }));
+    this._handleCategory(DEFAULT_CAT);
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -34,7 +34,6 @@ export default class SlideMe extends Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
-          // style={styles.container}
           data={this.state.filteredByCategory}
           // ref={r => (this.refs = r)}
           keyExtractor={this._keyExtractor}
@@ -60,18 +59,15 @@ export default class SlideMe extends Component {
   _keyExtractor = (item: Object, index: Number) => {
     return item.id;
   };
-  _logger = (id: String) => {
-    console.log(id);
-  };
+
   _renderItem({ item }) {
     return (
-      <FoodItem
+      <ListItem
         index={item.id}
         category={item.category}
         color={item.color}
         id={item.id}
         imageUrl={item.image}
-        onPressItem={this._logger}
         price={item.price}
         city={item.city}
       />
