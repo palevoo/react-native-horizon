@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "husky": "^1.0.0-rc.13",
     "jest-expo": "~27.0.0",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
@@ -14,6 +15,11 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test"
+    }
   },
   "jest": {
     "preset": "jest-expo"
