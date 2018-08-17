@@ -14,33 +14,76 @@ import { CATEGORIES } from '../utils'
 export default class NavBar extends Component {
   state = {
     categories: CATEGORIES
-  };
+  }
 
-  renderMenuItem = ({ item }) => {
+  renderMenuItem = ({ item, index }) => {
+    const { handleCategory, activeCategory } = this.props
+    if (item === activeCategory) {
+      return (
+        <TouchableOpacity
+          item={item}
+          onPress={() => {
+            if (index < 3) {
+              this.flatList.scrollToIndex({
+                animated: true,
+                index: index,
+                viewOffset: 0,
+                viewPosition: 0.5
+              })
+              handleCategory(item)
+            } else {
+              this.flatList.scrollToEnd({ animated: true })
+              handleCategory(item)
+            }
+          }}
+        >
+          <View style={styles.menuItem}>
+            <Text style={styles.menuTextActive}>{item}</Text>
+          </View>
+        </TouchableOpacity>
+      )
+    }
     return (
       <TouchableOpacity
         item={item}
-        onPress={() => this.props.handleCategory(item)}
+        onPress={() => {
+          if (index < 3) {
+            this.flatList.scrollToIndex({
+              animated: true,
+              index: index,
+              viewOffset: 0,
+              viewPosition: 0.5
+            })
+            handleCategory(item)
+          } else {
+            this.flatList.scrollToEnd({ animated: true })
+            handleCategory(item)
+          }
+        }}
       >
         <View style={styles.menuItem}>
           <Text style={styles.menuText}>{item}</Text>
         </View>
       </TouchableOpacity>
     )
-  };
+  }
 
-  render () {
-    const { handleCategory } = this.props
-
+  render() {
+    const { handleCategory, activeCategory } = this.props
     return (
       <View style={styles.container}>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
+          initialScrollIndex={0}
           data={this.state.categories}
           renderItem={this.renderMenuItem}
           keyExtractor={item => item}
           handleCategory={handleCategory}
+          activeCategory={activeCategory}
+          ref={ref => {
+            this.flatList = ref
+          }}
         />
       </View>
     )
@@ -54,11 +97,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#35D788'
   },
   menuItem: {
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 10,
+    paddingRight: 10
   },
   menuText: {
     fontSize: 24,
     color: '#fafafa'
+  },
+  menuTextActive: {
+    fontSize: 24,
+    color: '#fafafa',
+    fontWeight: 'bold'
   }
 })

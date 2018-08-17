@@ -4,11 +4,22 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class Dot extends Component {
-  render() {
+  render () {
     const { handleItem, id } = this.props
-
+    // if (active) {
+    //   return (
+    //     <TouchableOpacity onPress={() => handleItem(id)}>
+    //       <View style={styles.fatDot} />
+    //     </TouchableOpacity>
+    //   )
+    // }
     return (
-      <TouchableOpacity onPress={() => handleItem(id)}>
+      <TouchableOpacity
+        onPress={() => {
+          console.log('WTF????')
+          handleItem(id)
+        }}
+      >
         <View style={styles.dot} />
       </TouchableOpacity>
     )
@@ -23,5 +34,13 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 10,
     borderRadius: 7
+  },
+  fatDot: {
+    backgroundColor: '#404040',
+    width: 8.5,
+    height: 8.5,
+    padding: 0,
+    margin: 8.5,
+    borderRadius: 8.5
   }
 })

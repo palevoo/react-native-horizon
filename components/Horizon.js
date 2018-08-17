@@ -14,7 +14,7 @@ const DEFAULT_CAT = 'Breakfast'
 
 export default class Horizon extends Component {
   state = {
-    activeCategory: '',
+    activeCategory: DEFAULT_CAT,
     data: this.props.data,
     filteredByCategory: []
   }
@@ -26,7 +26,10 @@ export default class Horizon extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <NavBar handleCategory={this._handleCategory} />
+        <NavBar
+          handleCategory={this._handleCategory}
+          activeCategory={this.state.activeCategory}
+        />
         <Paginate
           items={this.state.filteredByCategory}
           handleItem={this._handleItem}
@@ -38,8 +41,8 @@ export default class Horizon extends Component {
           data={this.state.filteredByCategory}
           // ref={r => (this.refs = r)}
           keyExtractor={this._keyExtractor}
-          // onViewableItemsChanged={this.onViewableItemsChanged} // Map your keys to whatever unique ids the have (mine is a "id" prop)
           renderItem={this._renderItem}
+          onViewableItemsChanged={this._onViewableItemsChanged}
         />
       </View>
     )
@@ -47,6 +50,10 @@ export default class Horizon extends Component {
 
   _filterByCategory = (data, category) => {
     return data.filter(el => el.category === category)
+  }
+  _onViewableItemsChanged = (item, changed) => {
+    console.log('ITEM', item)
+    console.log('changed', changed)
   }
   _handleCategory = category => {
     this.setState(() => ({
