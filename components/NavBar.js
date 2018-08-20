@@ -18,12 +18,13 @@ export default class NavBar extends Component {
 
   renderMenuItem = ({ item, index }) => {
     const { handleCategory, activeCategory } = this.props
+
     if (item === activeCategory) {
       return (
         <TouchableOpacity
           item={item}
           onPress={() => {
-            if (index < 3) {
+            if (index < this.state.categories.length - 2) {
               this.flatList.scrollToIndex({
                 animated: true,
                 index: index,
@@ -47,7 +48,7 @@ export default class NavBar extends Component {
       <TouchableOpacity
         item={item}
         onPress={() => {
-          if (index < 3) {
+          if (index < this.state.categories.length - 2) {
             this.flatList.scrollToIndex({
               animated: true,
               index: index,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   container: {
     height: 40,
     width: Dimensions.get('window').width,
-    backgroundColor: '#35D788'
+    backgroundColor: '#EF4743'
   },
   menuItem: {
     paddingLeft: 10,
@@ -102,11 +103,11 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 24,
-    color: '#fafafa'
+    color: 'rgba(255, 255, 255, 0.7)'
   },
   menuTextActive: {
+    marginTop: 1,
     fontSize: 24,
-    color: '#fafafa',
-    fontWeight: 'bold'
+    color: '#fafafa'
   }
 })
