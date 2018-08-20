@@ -10,7 +10,7 @@ const { width } = Dimensions.get('window')
 
 export default class ListItem extends Component {
   render () {
-    const { color, city, id, imageUrl, price } = this.props
+    const { color, category, id, imageUrl, city, price } = this.props
 
     return (
       <View style={styles.container}>
@@ -19,6 +19,7 @@ export default class ListItem extends Component {
         </View>
         <View style={styles.text}>
           <Text>{city}</Text>
+          <Text>{category}</Text>
           <CustomButton
             title={`${price}₽`}
             onPress={() => console.log(`Pressed ${id}`)}

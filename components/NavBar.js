@@ -9,32 +9,16 @@ import {
   FlatList,
   Dimensions
 } from 'react-native'
-import { CATEGORIES } from '../utils'
 
 export default class NavBar extends Component {
-  state = {
-    categories: CATEGORIES
-  }
-
   renderMenuItem = ({ item, index }) => {
-    const { handleCategory, activeCategory } = this.props
+    const { activeCategory, highlightSection } = this.props
     if (item === activeCategory) {
       return (
         <TouchableOpacity
           item={item}
           onPress={() => {
-            if (index < 3) {
-              this.flatList.scrollToIndex({
-                animated: true,
-                index: index,
-                viewOffset: 0,
-                viewPosition: 0.5
-              })
-              handleCategory(item)
-            } else {
-              this.flatList.scrollToEnd({ animated: true })
-              handleCategory(item)
-            }
+            console.log(item)
           }}
         >
           <View style={styles.menuItem}>
@@ -47,18 +31,7 @@ export default class NavBar extends Component {
       <TouchableOpacity
         item={item}
         onPress={() => {
-          if (index < 3) {
-            this.flatList.scrollToIndex({
-              animated: true,
-              index: index,
-              viewOffset: 0,
-              viewPosition: 0.5
-            })
-            handleCategory(item)
-          } else {
-            this.flatList.scrollToEnd({ animated: true })
-            handleCategory(item)
-          }
+          highlightSection(item, index, this.flatList)
         }}
       >
         <View style={styles.menuItem}>
@@ -69,18 +42,18 @@ export default class NavBar extends Component {
   }
 
   render() {
-    const { handleCategory, activeCategory } = this.props
+    const { activeCategory, categories, highlightSection } = this.props
     return (
       <View style={styles.container}>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
           initialScrollIndex={0}
-          data={this.state.categories}
+          data={categories}
           renderItem={this.renderMenuItem}
           keyExtractor={item => item}
-          handleCategory={handleCategory}
           activeCategory={activeCategory}
+          highlightSection={highlightSection}
           ref={ref => {
             this.flatList = ref
           }}
@@ -94,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     height: 40,
     width: Dimensions.get('window').width,
-    backgroundColor: '#35D788'
+    backgroundColor: '#EF4743'
   },
   menuItem: {
     paddingLeft: 10,
@@ -102,11 +75,11 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 24,
-    color: '#fafafa'
+    color: 'rgba(255, 255, 255, 0.7)'
   },
   menuTextActive: {
+    marginTop: 1,
     fontSize: 24,
-    color: '#fafafa',
-    fontWeight: 'bold'
+    color: '#fafafa'
   }
 })

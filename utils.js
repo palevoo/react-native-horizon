@@ -1,17 +1,25 @@
 import faker from 'faker'
 import times from 'lodash/times'
 
-const CATEGORIES = ['Breakfast', 'Lunch', 'Vegan', 'Bar', 'Snacks']
+const CATEGORIES = [
+  'Autobots',
+  'Desipticons',
+  'MetalDaunitos',
+  'IronAAAs',
+  'Droids',
+  'Fartmakers',
+  'QWERTYs'
+]
 
-const getRandomCategory = arr => {
-  let random = Math.floor(Math.random() * (arr.length + 1))
-  return arr[random]
+const getRandomCategory = categories => {
+  let random = Math.floor(Math.random() * (categories.length + 1))
+  return categories[random]
 }
 
-const data = times(15, i => ({
+const data = times(20, i => ({
   email: faker.internet.email(),
   id: i,
-  image: faker.image.avatar(),
+  image: `https://robohash.org/${Math.floor(Math.random() * 100000)}`,
   name: faker.internet.userName(),
   category: getRandomCategory(CATEGORIES),
   city: faker.address.city(),
