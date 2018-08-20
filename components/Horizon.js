@@ -1,13 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react'
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Dimensions,
-  SectionList
-} from 'react-native'
+import { View, StyleSheet, Dimensions, SectionList } from 'react-native'
 // import propTypes from 'prop-types'
 
 import ListItem from './ListItem'
@@ -17,14 +11,17 @@ import { CATEGORIES } from '../utils'
 
 const { width, height } = Dimensions.get('window')
 
-const DEFAULT_CAT = 'Breakfast'
+const DEFAULT_CAT = 'Autobots'
 
 export default class Horizon extends Component {
   state = {
     activeCategory: DEFAULT_CAT,
+    categories: CATEGORIES,
     data: this.props.data,
     filteredByCategory: [],
-    activeItem: ''
+    activeItem: '',
+    list: {},
+    index: ''
   }
 
   componentDidMount() {
@@ -35,8 +32,9 @@ export default class Horizon extends Component {
     return (
       <View style={styles.container}>
         <NavBar
-          handleCategory={this._handleCategory}
           activeCategory={this.state.activeCategory}
+          highlightSection={this._hightlightActiveSection}
+          categories={this.state.categories}
         />
         <Paginate
           items={this.state.filteredByCategory}
@@ -60,9 +58,15 @@ export default class Horizon extends Component {
   _filterByCategory = (data, category) => {
     return data.filter(el => el.category === category)
   }
-  _onViewableItemsChanged = (item, changed) => {
-    console.log('ITEM', item)
-    console.log('changed', changed)
+  _onViewableItemsChanged = item => {
+    let currentSection = item.viewableItems[0].section.section
+    this.setState(() => ({
+      activeCategory: currentSection,
+      filteredByCategory: this._filterByCategory(
+        this.state.data,
+        currentSection
+      )
+    }))
   }
   _handleCategory = category => {
     this._navigateToCategory(category)
@@ -78,6 +82,25 @@ export default class Horizon extends Component {
       sectionIndex: CATEGORIES.indexOf(category),
       viewPosition: 0
     })
+  }
+  _hightlightActiveSection = (item, index, list) => {
+    this.setState(() => ({
+      list: list,
+      index: index
+    }))
+    console.log('THIS STATE', this.state)
+    if (index < this.state.categories.length - 2) {
+      list.scrollToIndex({
+        animated: true,
+        index: index,
+        viewOffset: 0,
+        viewPosition: 0.5
+      })
+      this._handleCategory(item)
+    } else {
+      list.scrollToEnd({ animated: true })
+      this._handleCategory(item)
+    }
   }
   _handleItem = item => {
     console.log('PARENTO', item)
