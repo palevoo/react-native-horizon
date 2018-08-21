@@ -7,11 +7,16 @@ import Dot from './Dot'
 
 export default class Paginate extends Component {
   render () {
-    const { items, handleItem } = this.props
+    const { activeItem, items, handleItem } = this.props
     return (
       <View style={styles.container}>
         {items.map(el => (
-          <Dot id={el.id} key={el.id} handleItem={handleItem} />
+          <Dot
+            id={el.id}
+            key={el.id}
+            handleItem={handleItem}
+            activeItem={activeItem}
+          />
         ))}
       </View>
     )
@@ -23,6 +28,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 25,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   }
 })

@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Dimensions, SectionList } from 'react-native'
 // import propTypes from 'prop-types'
+import throttle from 'lodash/throttle'
 
 import ListItem from './ListItem'
 import NavBar from './NavBar'
@@ -19,9 +20,10 @@ export default class Horizon extends Component {
     categories: CATEGORIES,
     data: this.props.data,
     filteredByCategory: [],
-    activeItem: '',
+    activeItem: 0,
     list: {},
-    index: ''
+    index: null,
+    item: null
   }
 
   componentDidMount() {
@@ -36,10 +38,6 @@ export default class Horizon extends Component {
           highlightSection={this._hightlightActiveSection}
           categories={this.state.categories}
         />
-        <Paginate
-          items={this.state.filteredByCategory}
-          handleItem={this._handleItem}
-        />
         <SectionList
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -50,6 +48,12 @@ export default class Horizon extends Component {
           renderItem={this._renderItem}
           onScrollToIndexFailed={() => {}}
           onViewableItemsChanged={this._onViewableItemsChanged}
+          initialNumToRender={3}
+        />
+        <Paginate
+          items={this.state.filteredByCategory}
+          handleItem={this._handleItem}
+          activeItem={this.state.activeItem}
         />
       </View>
     )
@@ -59,14 +63,21 @@ export default class Horizon extends Component {
     return data.filter(el => el.category === category)
   }
   _onViewableItemsChanged = item => {
+    console.log('ITEM', item)
     let currentSection = item.viewableItems[0].section.section
+    let activeItem = item.viewableItems[0].item.id
+    console.log(activeItem)
+    // throttle(() => {
     this.setState(() => ({
       activeCategory: currentSection,
+      activeItem: activeItem,
       filteredByCategory: this._filterByCategory(
         this.state.data,
         currentSection
       )
     }))
+    // }, 100)
+    console.log('STATESSS', this.state)
   }
   _handleCategory = category => {
     this._navigateToCategory(category)
@@ -85,6 +96,7 @@ export default class Horizon extends Component {
   }
   _hightlightActiveSection = (item, index, list) => {
     this.setState(() => ({
+      item: item,
       list: list,
       index: index
     }))
