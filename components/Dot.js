@@ -5,14 +5,15 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class Dot extends Component {
   render () {
-    const { handleItem, id } = this.props
-    // if (active) {
-    //   return (
-    //     <TouchableOpacity onPress={() => handleItem(id)}>
-    //       <View style={styles.fatDot} />
-    //     </TouchableOpacity>
-    //   )
-    // }
+    const { activeItem, handleItem, id } = this.props
+    console.log(id, activeItem)
+    if (activeItem === id) {
+      return (
+        <TouchableOpacity onPress={() => handleItem(id)}>
+          <View style={styles.fatDot} />
+        </TouchableOpacity>
+      )
+    }
     return (
       <TouchableOpacity
         onPress={() => {
@@ -33,14 +34,16 @@ const styles = StyleSheet.create({
     height: 7,
     padding: 0,
     margin: 10,
+    marginTop: 10,
     borderRadius: 7
   },
   fatDot: {
     backgroundColor: '#404040',
-    width: 8.5,
-    height: 8.5,
+    width: 7.75,
+    height: 7.75,
     padding: 0,
-    margin: 8.5,
-    borderRadius: 8.5
+    margin: 10,
+    marginTop: 9.25,
+    borderRadius: 7.75
   }
 })

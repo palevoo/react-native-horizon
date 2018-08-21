@@ -18,7 +18,7 @@ export default class NavBar extends Component {
         <TouchableOpacity
           item={item}
           onPress={() => {
-            console.log(item)
+            highlightSection(item, index, this.flatList)
           }}
         >
           <View style={styles.menuItem}>
