@@ -5,6 +5,7 @@ Simple React Native Navigation component, with horizontal navbar, bullet sub sec
 <p align="center">
  <img alt="react-native-horizon example" src="public/react-native-horizon.gif" width="208">
 </p>
+
 ## WARNING!!
 
 Currently under heavy development, not working properly yet!
@@ -22,15 +23,10 @@ in console type 'i' and as XCode render option choose iPhone X
 
 ## TODO
 
-- Navigate/render item from given id (<Dot onPress />)
-- Make continuous horizontal Flatlist for all elements
 - Add colour change animation
-- Add animation to navigation between items
 - Improve/fix styling
 - Alternative fallbacks divs on fail load & loading states
 - Integrate prop-types with default and isRequired props specified
-- Centre NavBar active item to the mid
-- Add Active styles for (dot, navItem etc)
 - Add test coverage for components and functions (80%+)
 - Refactor with single store/state and optimised with usage of component cycles
 - Refactor for modular external usage, add more custom props options
