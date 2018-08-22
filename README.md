@@ -1,6 +1,13 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
-Simple React Native Navigation component, with horizontal navbar, bullet sub section pagination and horizontal flatlist. Currently under heavy development, not working properly yet!
+Simple React Native Navigation component, with horizontal navbar, bullet sub section pagination and horizontal section list.
+
+<p align="center">
+ <img alt="react-native-horizon example" src="public/react-native-horizon.gif" width="208">
+</p>
+## WARNING!!
+
+Currently under heavy development, not working properly yet!
 
 ## To start
 
