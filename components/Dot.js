@@ -1,16 +1,16 @@
-/* @flow */
-
 import React, { Component } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import propTypes from 'prop-types'
 
 export default class Dot extends Component {
   render () {
-    const { activeItem, handleItem, id } = this.props
-    console.log(id, activeItem)
+    const { activeDotColor, activeItem, dotColor, handleItem, id } = this.props
     if (activeItem === id) {
       return (
         <TouchableOpacity onPress={() => handleItem(id)}>
-          <View style={styles.fatDot} />
+          <View
+            style={[styles.activeDot, { backgroundColor: activeDotColor }]}
+          />
         </TouchableOpacity>
       )
     }
@@ -21,15 +21,27 @@ export default class Dot extends Component {
           handleItem(id)
         }}
       >
-        <View style={styles.dot} />
+        <View style={[styles.dot, { backgroundColor: dotColor }]} />
       </TouchableOpacity>
     )
   }
 }
 
+Dot.propTypes = {
+  activeItem: propTypes.number,
+  activeDotColor: propTypes.string,
+  dotColor: propTypes.string,
+  handleItem: propTypes.func,
+  itemId: propTypes.number
+}
+
+Dot.defaultProps = {
+  dotColor: '#404040',
+  activeDotColor: '#404040'
+}
+
 const styles = StyleSheet.create({
   dot: {
-    backgroundColor: '#404040',
     width: 7,
     height: 7,
     padding: 0,
@@ -37,8 +49,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 7
   },
-  fatDot: {
-    backgroundColor: '#404040',
+  activeDot: {
     width: 7.75,
     height: 7.75,
     padding: 0,
