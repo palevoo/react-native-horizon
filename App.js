@@ -13,7 +13,7 @@ export default class App extends React.Component {
     data: data
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>{APP_NAME}</Text>

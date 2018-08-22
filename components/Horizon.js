@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Dimensions, SectionList } from 'react-native'
 // import propTypes from 'prop-types'
-import throttle from 'lodash/throttle'
+// import throttle from 'lodash/throttle'
 
 import ListItem from './ListItem'
 import NavBar from './NavBar'
@@ -22,20 +22,20 @@ export default class Horizon extends Component {
     filteredByCategory: [],
     activeItem: 0,
     list: {},
-    index: null,
-    item: null
+    index: null
   }
 
-  componentDidMount() {
-    this._handleCategory(DEFAULT_CAT)
+  componentDidMount () {
+    // this._handleCategory(DEFAULT_CAT)
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <NavBar
           activeCategory={this.state.activeCategory}
           highlightSection={this._hightlightActiveSection}
+          navigateToSection={this._navigateToCategory}
           categories={this.state.categories}
         />
         <SectionList
@@ -63,10 +63,16 @@ export default class Horizon extends Component {
     return data.filter(el => el.category === category)
   }
   _onViewableItemsChanged = item => {
-    console.log('ITEM', item)
+    let prevSection = this.state.activeCategory
     let currentSection = item.viewableItems[0].section.section
+    if (prevSection !== currentSection) {
+      this._hightlightActiveSection(
+        currentSection,
+        CATEGORIES.indexOf(currentSection),
+        this.state.list
+      )
+    }
     let activeItem = item.viewableItems[0].item.id
-    console.log(activeItem)
     // throttle(() => {
     this.setState(() => ({
       activeCategory: currentSection,
@@ -77,7 +83,6 @@ export default class Horizon extends Component {
       )
     }))
     // }, 100)
-    console.log('STATESSS', this.state)
   }
   _handleCategory = category => {
     this._navigateToCategory(category)
@@ -96,11 +101,10 @@ export default class Horizon extends Component {
   }
   _hightlightActiveSection = (item, index, list) => {
     this.setState(() => ({
-      item: item,
+      activeCategory: item,
       list: list,
       index: index
     }))
-    console.log('THIS STATE', this.state)
     if (index < this.state.categories.length - 2) {
       list.scrollToIndex({
         animated: true,
@@ -108,10 +112,8 @@ export default class Horizon extends Component {
         viewOffset: 0,
         viewPosition: 0.5
       })
-      this._handleCategory(item)
     } else {
       list.scrollToEnd({ animated: true })
-      this._handleCategory(item)
     }
   }
   _handleItem = item => {
@@ -134,7 +136,7 @@ export default class Horizon extends Component {
     return res
   }
 
-  _renderItem({ item, index, section }) {
+  _renderItem ({ item, index, section }) {
     return (
       <ListItem
         index={item.id}

@@ -12,13 +12,15 @@ import {
 
 export default class NavBar extends Component {
   renderMenuItem = ({ item, index }) => {
-    const { activeCategory, highlightSection } = this.props
+    const { activeCategory, highlightSection, navigateToSection } = this.props
     if (item === activeCategory) {
+      // if (this.flatList) highlightSection(item, index, this.flatList)
       return (
         <TouchableOpacity
           item={item}
           onPress={() => {
             highlightSection(item, index, this.flatList)
+            navigateToSection(item)
           }}
         >
           <View style={styles.menuItem}>
@@ -32,6 +34,7 @@ export default class NavBar extends Component {
         item={item}
         onPress={() => {
           highlightSection(item, index, this.flatList)
+          navigateToSection(item)
         }}
       >
         <View style={styles.menuItem}>
@@ -40,8 +43,10 @@ export default class NavBar extends Component {
       </TouchableOpacity>
     )
   }
-
-  render() {
+  componentDidMount () {
+    this.props.highlightSection(this.props.activeCategory, 0, this.flatList)
+  }
+  render () {
     const { activeCategory, categories, highlightSection } = this.props
     return (
       <View style={styles.container}>
