@@ -9,6 +9,8 @@ import CustomButton from 'Button'
 const { width } = Dimensions.get('window')
 
 export default class ListItem extends Component {
+  // TODO: show spinner while image is still loading
+  // TODO: show fallback image onLoadFail
   render () {
     const { color, category, id, imageUrl, city, price } = this.props
 
@@ -70,7 +72,6 @@ const styles = StyleSheet.create({
   text: {
     width: width,
     flexDirection: 'row',
-    backgroundColor: '#fafafa',
     padding: 40,
     justifyContent: 'space-between',
     alignItems: 'center'

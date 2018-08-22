@@ -12,11 +12,9 @@ import { CATEGORIES } from '../utils'
 
 const { width, height } = Dimensions.get('window')
 
-const DEFAULT_CAT = 'Autobots'
-
 export default class Horizon extends Component {
   state = {
-    activeCategory: DEFAULT_CAT,
+    activeCategory: CATEGORIES[0],
     categories: CATEGORIES,
     data: this.props.data,
     filteredByCategory: [],
@@ -25,11 +23,7 @@ export default class Horizon extends Component {
     index: null
   }
 
-  componentDidMount () {
-    // this._handleCategory(DEFAULT_CAT)
-  }
-
-  render () {
+  render() {
     return (
       <View style={styles.container}>
         <NavBar
@@ -84,13 +78,6 @@ export default class Horizon extends Component {
     }))
     // }, 100)
   }
-  _handleCategory = category => {
-    this._navigateToCategory(category)
-    this.setState(() => ({
-      activeCategory: category,
-      filteredByCategory: this._filterByCategory(this.state.data, category)
-    }))
-  }
   _navigateToCategory = category => {
     this.horizonList.scrollToLocation({
       animated: true,
@@ -136,7 +123,7 @@ export default class Horizon extends Component {
     return res
   }
 
-  _renderItem ({ item, index, section }) {
+  _renderItem({ item, index, section }) {
     return (
       <ListItem
         index={item.id}
