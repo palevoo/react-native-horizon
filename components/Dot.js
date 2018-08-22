@@ -15,12 +15,7 @@ export default class Dot extends Component {
       )
     }
     return (
-      <TouchableOpacity
-        onPress={() => {
-          console.log('WTF????')
-          handleItem(id)
-        }}
-      >
+      <TouchableOpacity onPress={() => handleItem(id)}>
         <View style={[styles.dot, { backgroundColor: dotColor }]} />
       </TouchableOpacity>
     )
@@ -36,7 +31,7 @@ Dot.propTypes = {
 }
 
 Dot.defaultProps = {
-  dotColor: '#404040',
+  dotColor: '#A5A5A8',
   activeDotColor: '#404040'
 }
 

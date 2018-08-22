@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native'
 // import propTypes from 'prop-types'
 
 import Horizon from './components/Horizon'
-// import Example from './components/Example'
 import { data, APP_NAME } from './utils'
 
 const { width } = Dimensions.get('window')
@@ -13,7 +12,7 @@ export default class App extends React.Component {
     data: data
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>{APP_NAME}</Text>
@@ -37,6 +36,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#EF4743',
     padding: 20,
     paddingTop: 40,
-    width: width
+    width: width,
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center'
   }
 })

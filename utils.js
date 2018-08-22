@@ -27,6 +27,6 @@ const data = times(20, i => ({
   price: faker.commerce.price()
 }))
 
-const APP_NAME = 'Horizon'
+const APP_NAME = 'React Native Horizon'
 
 export { data, CATEGORIES, APP_NAME }
